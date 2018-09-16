@@ -14,3 +14,40 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//
+//Route::get('/admin', function () {
+//    return view('layouts.admin');
+//});
+//
+//Route::get('/dashboard', function () {
+//
+//    return view('dashboard.index');
+//});
+//
+//Route::get('/leaderboard', function () {
+//
+//    return view('categories.index');
+//});
+//
+//Route::get('/create', function () {
+//
+//    return view('categories.create');
+//});
+Route::group(['middleware'=>'admin'], function(){
+
+    Route::resource('admin/users', 'AdminUsersController');
+
+});
+
+Route::group(['middleware'=>'user', 'admin'], function(){
+
+    Route::resource('admin/users', 'AdminUsersController');
+
+});
+
+//Route::resource('admin/users', 'AdminUsersController');
