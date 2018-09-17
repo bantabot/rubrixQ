@@ -22,7 +22,7 @@
         {{-- example data--}}
         @foreach($rubrics as $rubric)
         <tr>
-            <td>{{$rubric->place}}</td>
+            <td><a target="_blank" href="http://www.google.com/search?q={{urlencode(strtolower($rubric->place))}}">{{$rubric->place}}</a></td>
             <td>{{$rubric->toast + $rubric->presentation + $rubric->booty_factor + $rubric->tenderness + $rubric->smokiness + $rubric->sauce + $rubric->portion_size + $rubric->slaw + $rubric->meat_sauce_combo + $rubric->value + $rubric->go_back + $rubric->recommend + $rubric->sides + $rubric->brunswick_stew + $rubric->pickles + $rubric->service + $rubric->dessert + $rubric->ambiance + $rubric->bonus}}</td>
             <td>{{$rubric->updated_at->diffForHumans()}}</td>
             <td> <a href="{{route('rubric.edit', $rubric->id)}}"><button type="button" class="btn btn-primary">Edit</button></a> </td>
