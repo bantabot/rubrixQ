@@ -10,6 +10,7 @@
                  <th>Email</th>
                  <th>Role</th>
                    <th>Created</th>
+                   <th>Edit</th>
                </tr>
              </thead>
              <tbody>
@@ -19,6 +20,7 @@
                  <td>{{$user->role->name}}</td>
                  <td>{{$user->email}}</td>
                    <td>{{$user->created_at->diffForHumans()}}</td>
+                   <td><a href="{{route('users.edit', $user->id)}}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                </tr>
                  @endforeach
 

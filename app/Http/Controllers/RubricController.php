@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
-use App\User;
+use App\Rubric;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminUsersController extends Controller
+class RubricController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $rubrics = Rubric::all();
 
-        return view('admin/users/index', compact('users'));
+        return view('rubric/index', compact('rubrics'));
     }
 
     /**
@@ -29,9 +29,8 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
-        $roles = Role::pluck('name', 'id')->all();
-        return view('admin/users/create', compact('roles'));
-
+        $factors = Rubric::all();
+        return view('rubric/create', compact('factors'));
     }
 
     /**
@@ -43,14 +42,12 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
+
         $input = $request->all();
-        $input['password'] = bcrypt($request->password);
 
-        User::create($input);
-
-
-        return redirect('/admin/users');
-
+       $user->rubric()->create($input);
+        return redirect('/rubric');
     }
 
     /**
@@ -73,10 +70,8 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
-        $roles = Role::pluck('name', 'id')->all();
-        return view('admin/users/edit', compact('roles', 'user'));
-
+        $rubric = Rubric::findOrFail($id);
+        return view('/rubric/update', compact('rubric'));
     }
 
     /**
@@ -89,19 +84,13 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user= User::findOrFail($id);
+        $rubric= Rubric::findOrFail($id);
 
         $input = $request->all();
 
-        if($input['password']){
-            $input['password'] = bcrypt($request->password);
-        }
-        else{
-            unset($input['password']);
 
-        }
-        $user->update($input);
-        return redirect('/admin/users');
+        $rubric->update($input);
+        return redirect('/rubric');
     }
 
     /**
@@ -113,14 +102,8 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
-
-        $user=  User::findOrFail($id);
-
-
-
-
-
-        $user->delete();
-        return redirect('/admin/users');
+        $rubric=  Rubric::findOrFail($id);
+        $rubric->delete();
+        return redirect('/rubric');
     }
 }

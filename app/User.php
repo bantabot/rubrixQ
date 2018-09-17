@@ -43,5 +43,10 @@ class User extends Authenticatable
         return false;
 
     }
+    public function rubric(){
+
+        return $this->hasMany('App\Rubric');
+
+    }
 
 }

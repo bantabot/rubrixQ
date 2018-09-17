@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
-use App\User;
+use App\BBQ;
+use App\Rubric;
 use Illuminate\Http\Request;
 
-class AdminUsersController extends Controller
+class BBQController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,7 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users = User::all();
 
-        return view('admin/users/index', compact('users'));
     }
 
     /**
@@ -29,8 +27,8 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
-        $roles = Role::pluck('name', 'id')->all();
-        return view('admin/users/create', compact('roles'));
+        $factors = Rubric::all();
+        return view('bbq.create', compact('factors'));
 
     }
 
@@ -43,14 +41,13 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
-        $input = $request->all();
-        $input['password'] = bcrypt($request->password);
+//        $input = $request->all();
+//
+//
+//        Rubric::create($input);
 
-        User::create($input);
 
-
-        return redirect('/admin/users');
-
+        return redirect('dashboard');
     }
 
     /**
@@ -73,10 +70,6 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
-        $roles = Role::pluck('name', 'id')->all();
-        return view('admin/users/edit', compact('roles', 'user'));
-
     }
 
     /**
@@ -89,19 +82,6 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user= User::findOrFail($id);
-
-        $input = $request->all();
-
-        if($input['password']){
-            $input['password'] = bcrypt($request->password);
-        }
-        else{
-            unset($input['password']);
-
-        }
-        $user->update($input);
-        return redirect('/admin/users');
     }
 
     /**
@@ -113,14 +93,5 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
-
-        $user=  User::findOrFail($id);
-
-
-
-
-
-        $user->delete();
-        return redirect('/admin/users');
     }
 }

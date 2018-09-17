@@ -7,16 +7,16 @@
         {{--@endif--}}
 
 
-     <table class="table">
-          <tbody>
-           <tr>
-             <td>Create New Rubrix</td>
-             <td class="btn btn-primary">New Rubrix</td>
+     {{--<table class="table">--}}
+          {{--<tbody>--}}
+           {{--<tr>--}}
+             {{--<td>Create New Rubrix</td>--}}
+               {{--<td><a href="create"><button type="button" class="btn btn-primary">New</button></a></td>--}}
 
-           </tr>
+           {{--</tr>--}}
 
-         </tbody>
-       </table>
+         {{--</tbody>--}}
+       {{--</table>--}}
 
    {{--}}
    @if($categories)
@@ -38,9 +38,11 @@
          <td>BBQ</td>
          <td>a month ago</td>
          <td>12</td>
-           <td class="btn btn-primary"> Add new </td>
+           <td><a href="{{route('rubric.create')}}"><button type="button" class="btn btn-primary">New Entry</button></a></td>
 
-           <td class="btn btn-danger"> <a href="leaderboard"> View all</a> </td>
+
+           <td><a href="{{route('rubric.index')}}"><button type="button" class="btn btn-danger">View All</button></a></td>
+
        </tr>
      {{--possible foreach}}
      @foreach($categories as $category)

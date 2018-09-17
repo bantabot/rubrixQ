@@ -23,7 +23,6 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <![endif]-->
 
 
@@ -56,7 +55,9 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    {{Auth::user()->name}}
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -111,8 +112,40 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="{{route('dashboard')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
+
+                    @if(Auth::user()->role->name == 'Admin')
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Users  <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('users.index')}}">All Users</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('users.create')}}">Create User</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                        @endif
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>BBQ  <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('rubric.index')}}">All Entries</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('rubric.create')}}">Add Entry</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
 
 
 
@@ -142,6 +175,7 @@
 
 
 
+    </div>
 
 </div>
 
