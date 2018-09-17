@@ -43,7 +43,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Home</a>
+            <a class="navbar-brand" href="{{route('dashboard')}}">Home</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -55,7 +55,7 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    {{Auth::user()->name}}
+                   {{Auth::user()->name}}
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 
                 </a>
@@ -65,7 +65,8 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    {{--<li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>--}}
+                    <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -132,7 +133,7 @@
                     </li>
                         @endif
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>BBQ  <span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>BBQ<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="{{route('rubric.index')}}">All Entries</a>
@@ -145,6 +146,40 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('category.index')}}">All Categories</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('category.create')}}">Add Category</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+
+
+                    {{--@foreach($categories as $category)<li>--}}
+                        {{--<a href="#"><i class="fa fa-wrench fa-fw"></i>{{$category->name}}<span class="fa arrow"></span></a>--}}
+                        {{--<ul class="nav nav-second-level">--}}
+                            {{--<li>--}}
+                                {{--<a href="{{route('rubric.index')}}">All Entries</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li>--}}
+                                {{--<a href="{{route('rubric.create')}}">Add Entry</a>--}}
+                            {{--</li>--}}
+
+                        {{--</ul>--}}
+                        {{--<!-- /.nav-second-level -->--}}
+                    {{--</li>--}}
+
+                        {{--@endforeach--}}
+
 
 
 

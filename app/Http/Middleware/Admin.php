@@ -14,17 +14,17 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-        if(Auth::check()){
+public function handle($request, Closure $next)
+{
+    if(Auth::check()){
 
-            if(Auth::user()->isAdmin()){
+        if(Auth::user()->isAdmin()){
 
-                return $next($request);
+            return $next($request);
 
-            }
         }
-
-        return redirect(404);
     }
+
+    return redirect(404);
+}
 }
