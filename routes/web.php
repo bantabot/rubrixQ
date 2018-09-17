@@ -11,6 +11,7 @@
 |
 */
 
+use App\Category;
 use App\User;
 
 Route::get('/', function () {
@@ -25,11 +26,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/dashboard', function () {
+    $categories=Category::all();
 
     $user=User::all();
 
 
-    return view('dashboard.index', compact('user'));
+    return view('dashboard.index', compact('user', 'categories'));
 }) ->name('dashboard');
 
 Route::get('/leaderboard', function () {
@@ -52,3 +54,5 @@ Route::group(['middleware'=>'admin'], function(){
 //Route::resource('admin/users', 'AdminUsersController');
 
 Route::resource('/rubric', 'RubricController');
+
+Route::resource('/category', 'CategoryController');

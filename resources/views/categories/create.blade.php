@@ -4,21 +4,21 @@
 
 <h1>Create a new Rubrix</h1>
 
-{!! Form::open() !!}
+{!! Form::open(['method'=>'POST', 'action'=>'CategoryController@store']) !!}
 
 <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
     {!! Form::text('name', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('name', 'How many factors?') !!}
-    {!! Form::text('name', null, ['class'=>'form-control']) !!}
+    {!! Form::label('description', 'Description') !!}
+    {!! Form::text('description', null, ['class'=>'form-control']) !!}
 </div>
+{{--<div>--}}
+    {{--{!! Form::button('Add Factor', ['class'=>'btn btn-primary']) !!}--}}
+{{--</div>--}}
 <div>
-    {!! Form::button('Add Factor', ['class'=>'btn btn-primary']) !!}
-</div>
-<div>
-    {!! Form::submit('Create Rubrix', ['class'=>'btn btn-primary']) !!}
+    {!! Form::submit('Create Category', ['class'=>'btn btn-primary']) !!}
 </div>
 
 {!! Form::close() !!}

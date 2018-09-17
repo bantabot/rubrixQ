@@ -28,20 +28,24 @@
      <thead>
        <tr>
          <th>Rubrix</th>
+           <th>Description</th>
          <th>Created</th>
          <th>Entries</th>
        </tr>
      </thead>
      <tbody>
      {{-- example data--}}
+     @foreach($categories as $category)
        <tr>
-         <td>BBQ</td>
-         <td>a month ago</td>
+         <td>{{$category->name}}</td>
+           <td>{{$category->description}}</td>
+         <td>{{$category->created_at->diffForHumans()}}</td>
          <td>12</td>
            <td><a href="{{route('rubric.create')}}"><button type="button" class="btn btn-primary">New Entry</button></a></td>
 
 
            <td><a href="{{route('rubric.index')}}"><button type="button" class="btn btn-danger">View All</button></a></td>
+           @endforeach
 
        </tr>
      {{--possible foreach}}

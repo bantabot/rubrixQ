@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\BBQ;
-use App\Rubric;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class BBQController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,9 @@ class BBQController extends Controller
     public function index()
     {
         //
+        $categories = Category::all();
 
+        return view('categories/index', compact('categories'));
     }
 
     /**
@@ -27,9 +29,7 @@ class BBQController extends Controller
     public function create()
     {
         //
-        $factors = Rubric::all();
-        return view('bbq.create', compact('factors'));
-
+        return view('categories/create');
     }
 
     /**
@@ -41,13 +41,12 @@ class BBQController extends Controller
     public function store(Request $request)
     {
         //
-//        $input = $request->all();
-//
-//
-//        Rubric::create($input);
+        $user = Auth::user();
 
+        $input = $request->all();
 
-        return redirect('dashboard');
+        $user->category()->create($input);
+        return redirect('/category');
     }
 
     /**
@@ -70,6 +69,8 @@ class BBQController extends Controller
     public function edit($id)
     {
         //
+        $category = Category::findOrFail($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -82,6 +83,13 @@ class BBQController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $category= Category::findOrFail($id);
+
+        $input = $request->all();
+
+
+        $category->update($input);
+        return redirect('/category');
     }
 
     /**
@@ -93,5 +101,8 @@ class BBQController extends Controller
     public function destroy($id)
     {
         //
+        $category=  Category::findOrFail($id);
+        $category->delete();
+        return redirect('/category');
     }
 }

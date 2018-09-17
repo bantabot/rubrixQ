@@ -12,22 +12,5 @@ class Rubric extends Model
 
     ];
 
-    public function sumFactors(){
-//
-//        $toast = DB::table('rubrics')->where('id',$id)->value('toast');
-//        $presentation = DB::table('rubrics')->where('id',$id)->value('presentation');
-//
-//        $total = $toast + $presentation;
-//
-//            return $total;
 
-        echo "sum factors: ";
-
-
-
-
-
-
-
-    }
 }
