@@ -24,7 +24,7 @@
 
     <h1>Your Rubrix</h1>
 
-   <div><a href="{{route('category.create')}}"><button type="button" class="btn btn-primary">New Category</button></a></div>
+    <div><a href="{{route('factor.create')}}"><button type="button" class="btn btn-primary">New Factor</button></a></div>
 
     <table class="table">
         <thead>
@@ -37,17 +37,17 @@
         </thead>
         <tbody>
         {{-- example data--}}
-        @foreach($categories as $category)
+        @foreach($factors as $factor)
             <tr>
-                <td>{{$category->name}}</td>
-                <td>{{$category->description}}</td>
-                <td>{{$category->created_at->diffForHumans()}}</td>
-                <td>{{DB::table('rubrics')->where('category_id', $category->id)->count()}}</td>
-                <td><a href="{{route('rubric.create')}}"><button type="button" class="btn btn-primary">New Entry</button></a></td>
+                <td>{{$factor->name}}</td>
+                <td>{{$factor->description}}</td>
+                <td>{{$factor->created_at->diffForHumans()}}</td>
+                {{--<td>{{DB::table('rubrics')->where('category_id', $category->id)->count()}}</td>--}}
+                {{--<td><a href="{{route('rubric.create')}}"><button type="button" class="btn btn-primary">New Entry</button></a></td>--}}
 
 
 
-                <td><a href="{{route('category.edit', $category->id)}}"><button type="button" class="btn btn-danger">Edit Category</button></a></td>
+                <td><a href="{{route('factor.edit', $factor->id)}}"><button type="button" class="btn btn-danger">Edit Factor</button></a></td>
                 @endforeach
 
             </tr>

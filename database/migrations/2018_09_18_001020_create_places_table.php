@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRubricsTable extends Migration
+class CreatePlacesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateRubricsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rubrics', function (Blueprint $table) {
+        Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('factor_id');
+            $table->string('name')->unique();
+            $table->string('address');
+            $table->string('city');
+            $table->string('state');
+            $table->integer('zip code');
+            $table->integer('google_place_id');
             $table->integer('is_active')->default(1);
-
-
 
             $table->timestamps();
         });
@@ -32,6 +34,6 @@ class CreateRubricsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rubrics');
+        Schema::dropIfExists('places');
     }
 }

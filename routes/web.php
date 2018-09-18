@@ -59,6 +59,10 @@ Route::resource('/rubric', 'RubricController');
 
 Route::resource('/category', 'CategoryController');
 
+Route::resource('/factor', 'FactorController');
+
+Route::resource('/place', 'PlaceController');
+
 
 
 //Route::group('', function(){

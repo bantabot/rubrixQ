@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rubric extends Model
+class Rating extends Model
 {
     //
     protected $fillable = [
 
-        'status', 'user_id', 'category_id', 'factor_id'
+        'rubric_id', 'score', 'place_id'
     ];
-
-
 }
