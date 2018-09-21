@@ -11,4 +11,11 @@ class Factor extends Model
 
         'name', 'description'
     ];
+
+    public function rubric(){
+
+        return $this->hasMany('App\Rubric');
+
+    }
+
 }

@@ -43,7 +43,6 @@
                 <td>{{$category->description}}</td>
                 <td>{{$category->created_at->diffForHumans()}}</td>
                 <td>{{DB::table('rubrics')->where('category_id', $category->id)->count()}}</td>
-                <td><a href="{{route('rubric.create')}}"><button type="button" class="btn btn-primary">New Entry</button></a></td>
 
 
 
@@ -51,6 +50,8 @@
                 @endforeach
 
             </tr>
+
+
             {{--possible foreach}}
             @foreach($categories as $category)
               <tr>

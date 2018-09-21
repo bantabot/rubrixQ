@@ -18,6 +18,7 @@
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -128,15 +129,29 @@
                     </li>
                         @endif
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>BBQ<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Ratings<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('rubric.index')}}">All Entries</a>
+                                <a href="{{route('rating.index')}}">All Ratings</a>
                             </li>
 
+
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Rubrics<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('rubric.create')}}">Add Entry</a>
+                                <a href="{{route('rubric.index')}}">All Rubrics</a>
                             </li>
+                            <li>
+                                <a href="{{route('rubric.create')}}">Add Factor to Rubric</a>
+                            </li>
+
+
+
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -173,11 +188,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Places<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('place.index')}}">All Categories</a>
+                                <a href="{{route('place.index')}}">All Places</a>
                             </li>
 
                             <li>
-                                <a href="{{route('place.create')}}">Add Category</a>
+                                <a href="{{route('place.create')}}">Add Place</a>
                             </li>
 
                         </ul>

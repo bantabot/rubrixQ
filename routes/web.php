@@ -12,6 +12,9 @@
 */
 
 use App\Category;
+use App\Place;
+use App\Rating;
+use App\Rubric;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,6 +65,26 @@ Route::resource('/category', 'CategoryController');
 Route::resource('/factor', 'FactorController');
 
 Route::resource('/place', 'PlaceController');
+Route::resource('/rating', 'RatingController');
+
+Route::get('/testview/{id}', function($id){
+
+    $places = Place::pluck('name', 'id')->all();
+
+
+
+    $category = Category::findOrFail($id);
+
+    $user = Auth::user()->id;
+    $rubrics = Rubric::where(['user_id'=>$user, 'category_id'=>$id])->get();
+
+    return view('rubric/show', compact('rubrics', 'category'));
+//    return view('ratings/edit', compact('rubrics', 'category', 'places'));
+
+})->name('testview');
+
+
+
 
 
 

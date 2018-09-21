@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Factor;
+use App\Place;
+use App\Rating;
 use App\Rubric;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RubricController extends Controller
+class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +20,32 @@ class RubricController extends Controller
     public function index()
     {
         //
-//
         $user = Auth::user()->id;
 
-        $rubrics= Rubric:: where('user_id', $user)->select('category_id')->distinct()->get();
+////
+////
+////
+        $rubrics = Rubric::where('user_id', $user)->get();
+//        $rubrics->all();
+        $places = Rating::select('place_id')->distinct()->get();
+//        $places = Rating::where()
+//        $ratings->rubric;
+//        $ratings = Rating::whereIn('rubric_id', $rubrics)->get();
+        $ratings = new Rating;
 
-// why doesn't this work? is it because no methods in controllers?
-//        $rubrics = new Rubric;
-//        $rubrics->getUniqueCategoryByUser($user);
-        return view('rubric/index', compact('rubrics', 'rubric_code'));
+//
+//        $test = Rating::where('rubric_id', 22)->get();
+        $test= $rubrics;
+
+
+
+
+
+
+
+
+
+        return view('ratings/index', compact('places', 'ratings', 'test'));
     }
 
     /**
@@ -34,13 +53,11 @@ class RubricController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($category_id, $place_id)
     {
         //
-        $factors = Factor::pluck('name', 'id')->all();
-        $categories = Category::pluck('name', 'id')->all();
-        $rubrics = Rubric::all();
-        return view('rubric/create', compact('factors', 'categories', 'rubrics'));
+
+
     }
 
     /**
@@ -52,14 +69,18 @@ class RubricController extends Controller
     public function store(Request $request)
     {
         //
-        $user_id = Auth::user()->id;
 
         $input = $request->all();
-        $input['rubric_code'] = $user_id . 0 . $request['category_id'];
 
-        $user = Auth::user();
-       $user->rubric()->create($input);
-        return redirect('/rubric');
+        Rating::create($input);
+
+        return redirect('rating');
+
+
+
+
+
+
     }
 
     /**
@@ -71,7 +92,11 @@ class RubricController extends Controller
     public function show($id)
     {
         //
-
+        $places = Place::pluck('name', 'id')->all();
+        $user = Auth::user()->id;
+        $category = Category::findOrFail($id);
+        $rubrics = Rubric::where(['user_id'=> $user, 'category_id'=> $id])->get();
+        return view('ratings/show', compact('rubrics', 'places', 'category'));
     }
 
     /**
@@ -83,8 +108,6 @@ class RubricController extends Controller
     public function edit($id)
     {
         //
-        $rubric = Rubric::findOrFail($id);
-        return view('/rubric/update', compact('rubric'));
     }
 
     /**
@@ -97,13 +120,6 @@ class RubricController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $rubric= Rubric::findOrFail($id);
-
-        $input = $request->all();
-
-
-        $rubric->update($input);
-        return redirect('/rubric');
     }
 
     /**
@@ -115,9 +131,5 @@ class RubricController extends Controller
     public function destroy($id)
     {
         //
-        $rubric=  Rubric::findOrFail($id);
-        $rubric->delete();
-        return redirect('/rubric');
-
     }
 }
