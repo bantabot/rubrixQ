@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Create a new Rubrix</h1>
+<h1>What is the category?</h1>
 
 {!! Form::open(['method'=>'POST', 'action'=>'CategoryController@store']) !!}
 

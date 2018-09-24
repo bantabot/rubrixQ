@@ -12,21 +12,25 @@
 </div>
 
 
-
+<div class="row">
 
 
 @foreach($factors as $factor)
 
     <div class="form-group">
-        {!! Form::label('factor_id', 'Include '. $factor->name) !!}
-        {!! Form::checkbox('factor_id[]', $factor->id, null, ['class'=>'form-control'])!!}
+        <div class="col-md-3">
+        {!! Form::label('factor_id', $factor->name) !!}
+
+        {!! Form::checkbox('factor_id[]', $factor->id, null, ['class'=>'form-control'])!!}</div>
 
     </div>
 
 @endforeach
+</div>
 
-<div></div>
+<div class="row">
     {!! Form::submit('Add Factor', ['class'=>'btn btn-primary']) !!}
+</div>
 {{--</div>--}}
 {!! Form::close() !!}
 

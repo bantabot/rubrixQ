@@ -31,18 +31,27 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/dashboard', function () {
-    $categories=Category::all();
+//    $categories=Category::all();
 
-    $user=User::all();
+//    $user=User::all();
 
 
-    return view('dashboard.index', compact('user', 'categories'));
+//    return view('dashboard.index', compact('user', 'categories'));
+    return redirect(route('rubric.index'));
 }) ->name('dashboard');
 
-Route::get('/leaderboard', function () {
+Route::get('/leaderboard/{id}', function ($id) {
 
-    return view('categories.index');
-});
+    $user = Auth::user()->id;
+    $category = Category::findOrFail($id);
+    $rubric_id = new Rubric;
+    $rubric_id = $rubric_id->getRubricId($id);
+    $ratings = Rating::whereIn('rubric_id', $rubric_id)->groupBy('place_id')->get();
+
+
+
+    return view('/ratings/leaderboard', compact('category', 'ratings'));
+})->name('leaderboard');
 
 Route::get('/create', function () {
 

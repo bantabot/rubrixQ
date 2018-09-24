@@ -26,12 +26,10 @@ class Rating extends Model
     public function getPlaceSum($category_id, $place_id)
 
     {
-//        $places = $id->rating->groupBy('rubric_id')->keys()->all();
-        $user = Auth::user()->id;
+        $rubric_ids = new Rubric;
+//
 
-        $rubric_ids = Rubric::where(['user_id'=> $user, 'category_id'=>$category_id])->pluck('id')->all();
-
-        return $this-> where('place_id', $place_id)->whereIn('rubric_id', $rubric_ids)->sum('score');
+        return $this-> where('place_id', $place_id)->whereIn('rubric_id', $rubric_ids->getRubricId($category_id))->sum('score');
 
 
         }

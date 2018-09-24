@@ -9,6 +9,9 @@
 
     <h1>Your Rubrix</h1>
 
+<div><a href="{{route('category.create')}}"><button type="button" class="btn btn-primary">Create a new Rubrix</button></a></div>
+
+
      <table class="table">
          <thead>
            <tr>
@@ -24,6 +27,7 @@
              <td>{{$rubric->category->description}}</td>
              <td><a href="{{route('rubric.show', $rubric->category->id)}}/"><button class="btn btn-primary" >Edit Factors</button></a></td>
                <td><a href="{{route('rating.show', $rubric->category->id)}}/"><button class="btn btn-primary" >Add Score</button></a></td>
+               <td><a href="{{route('leaderboard', $rubric->category->id)}}/"><button class="btn btn-primary" >Leaderboard</button></a></td>
 
 
 

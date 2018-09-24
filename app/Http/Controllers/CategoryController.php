@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $input = $request->all();
 
         $user->category()->create($input);
-        return redirect('/category');
+        return redirect('/rubric/create');
     }
 
     /**

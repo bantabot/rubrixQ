@@ -44,6 +44,13 @@ class Rubric extends Model
 
     }
 
+    public function getRubricId($category_id){
+
+        $user = Auth::user()->id;
+
+        return $this-> where(['user_id'=> $user, 'category_id'=>$category_id])->pluck('id')->all();
+    }
+
 
 
 

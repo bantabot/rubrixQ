@@ -53,25 +53,11 @@
 
 
 
-{{--                <td>{{$ratings->getPlaceSum($place->place->id)}}</td>--}}
-{{--               <td>{{$places->rubric->category->name}}</td>--}}
-
-{{--                <td>{{$rating->rubric->factor->name}}</td>--}}
-                {{--<td>{{$rating->score}}</td>--}}
 
 </tr>
 
         @endforeach
 
-
-        {{--@foreach($test as $value)--}}
-            {{--<tr>--}}
-                {{--<td>{{$value->category->name}}</td>--}}
-            {{--</tr>--}}
-
-        {{--@endforeach--}}
-
-{{--        {{var_dump($test->category()->name)}}--}}
 
 
 

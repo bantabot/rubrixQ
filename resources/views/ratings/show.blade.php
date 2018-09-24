@@ -30,7 +30,7 @@
 
              <td>{!! Form::label('rubric_id', $rubric->factor->name) !!}
                  {!! Form::hidden('rubric_id[]', $rubric->id, null) !!}</td>
-               <td>{!! Form::selectRange('score[]', 1, 5, null) !!}</td>
+               <td>{!! Form::selectRange('score[]', 0, 5, null) !!}</td>
 
 
 
