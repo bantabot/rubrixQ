@@ -17,4 +17,12 @@ class Category extends Model
         return $this->hasMany('App\Rubric');
 
     }
+    public function getCategoryIdbyName($name){
+
+        return $this-> where('name', $name)->first()->id;
+    }
+
+
+
+
 }

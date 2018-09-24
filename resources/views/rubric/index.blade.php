@@ -22,7 +22,11 @@
            <tr>
              <td>{{$rubric->category->name}}</td>
              <td>{{$rubric->category->description}}</td>
-             <td><a href="{{route('testview', $rubric->category->id)}}/"><button class="btn btn-primary" >View</button></a></td>
+             <td><a href="{{route('rubric.show', $rubric->category->id)}}/"><button class="btn btn-primary" >Edit Factors</button></a></td>
+               <td><a href="{{route('rating.show', $rubric->category->id)}}/"><button class="btn btn-primary" >Add Score</button></a></td>
+
+
+
            </tr>
            @endforeach
 

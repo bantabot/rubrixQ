@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Factor;
+use App\Place;
 use App\Rubric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,7 @@ class RubricController extends Controller
     public function create()
     {
         //
-        $factors = Factor::pluck('name', 'id')->all();
+        $factors = Factor::all();
         $categories = Category::pluck('name', 'id')->all();
         $rubrics = Rubric::all();
         return view('rubric/create', compact('factors', 'categories', 'rubrics'));
@@ -52,13 +53,21 @@ class RubricController extends Controller
     public function store(Request $request)
     {
         //
+
+//        dd($request);
         $user_id = Auth::user()->id;
 
         $input = $request->all();
         $input['rubric_code'] = $user_id . 0 . $request['category_id'];
 
         $user = Auth::user();
-       $user->rubric()->create($input);
+        foreach ($request->factor_id as $factor){
+
+            $input['factor_id'] = $factor;
+            $user->rubric()->create($input);
+
+        }
+
         return redirect('/rubric');
     }
 
@@ -71,6 +80,17 @@ class RubricController extends Controller
     public function show($id)
     {
         //
+        $places = Place::pluck('name', 'id')->all();
+        $factors = Factor::all();
+
+
+
+        $category = Category::findOrFail($id);
+
+        $user = Auth::user()->id;
+        $rubrics = Rubric::where(['user_id'=>$user, 'category_id'=>$id])->get();
+
+        return view('rubric/show', compact('rubrics', 'category', 'factors'));
 
     }
 

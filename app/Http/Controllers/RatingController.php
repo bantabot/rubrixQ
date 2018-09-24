@@ -25,17 +25,23 @@ class RatingController extends Controller
 ////
 ////
 ////
-        $rubrics = Rubric::where('user_id', $user)->get();
+        $rubrics = Rubric::where('user_id', $user)->groupBy('category_id')->get();
 //        $rubrics->all();
         $places = Rating::select('place_id')->distinct()->get();
 //        $places = Rating::where()
 //        $ratings->rubric;
 //        $ratings = Rating::whereIn('rubric_id', $rubrics)->get();
+//        $categoryNames = [];
+//        foreach ($places as $value){
+//            $categoryNames[] = $value->getCategoryName($value->place);
+//
+//        }
+
         $ratings = new Rating;
 
-//
+//Ratings
 //        $test = Rating::where('rubric_id', 22)->get();
-        $test= $rubrics;
+        $test= new Category;
 
 
 
@@ -45,7 +51,7 @@ class RatingController extends Controller
 
 
 
-        return view('ratings/index', compact('places', 'ratings', 'test'));
+        return view('ratings/index', compact('places', 'ratings', 'test', 'categoryNames'));
     }
 
     /**
@@ -69,10 +75,21 @@ class RatingController extends Controller
     public function store(Request $request)
     {
         //
-
         $input = $request->all();
 
-        Rating::create($input);
+        $entryCount = count($request->score);
+
+        for ($i = 0; $i < $entryCount; $i++ ){
+
+            $input['score'] = $request->score[$i];
+            $input['rubric_id'] = $request->rubric_id[$i];
+
+            Rating::create($input);
+
+
+
+        }
+
 
         return redirect('rating');
 

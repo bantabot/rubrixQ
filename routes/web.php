@@ -13,6 +13,7 @@
 
 use App\Category;
 use App\Place;
+use App\Factor;
 use App\Rating;
 use App\Rubric;
 use App\User;
@@ -70,6 +71,7 @@ Route::resource('/rating', 'RatingController');
 Route::get('/testview/{id}', function($id){
 
     $places = Place::pluck('name', 'id')->all();
+    $factors = Factor::all();
 
 
 
@@ -78,10 +80,25 @@ Route::get('/testview/{id}', function($id){
     $user = Auth::user()->id;
     $rubrics = Rubric::where(['user_id'=>$user, 'category_id'=>$id])->get();
 
-    return view('rubric/show', compact('rubrics', 'category'));
+    return view('rubric/show', compact('rubrics', 'category', 'factors'));
 //    return view('ratings/edit', compact('rubrics', 'category', 'places'));
 
 })->name('testview');
+
+//Route::get('/rating/$id/view', function($id){
+//
+//    $category = Category::findOrFail($id);
+//
+//    $user = Auth::user()->id;
+//    $rubrics = Rubric::where(['user_id'=>$user, 'category_id'=>$id])->get();
+//    $ratings = Rating::where('rubric_id', )
+//
+//    return view('ratings/view', compact('rubrics', 'category'));
+//
+//
+//
+//
+//});
 
 
 
