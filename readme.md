@@ -1,4 +1,4 @@
-###RubrixQ
+### RubrixQ
 A place to compare the uncompareable
 
 RubrixQ is a webapp designed to help people compare their favorite things across different places.
