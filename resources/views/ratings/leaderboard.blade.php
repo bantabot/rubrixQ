@@ -3,6 +3,7 @@
 
 @section('content')
 
+
     <h1>{{$category->name}}</h1>
 
     @if($ratings->isNotEmpty())
@@ -16,12 +17,15 @@
            </tr>
          </thead>
          <tbody>
-         @foreach($ratings as $rating)
-           <tr>
-             <td>{{$rating->place->name}}</td>
-             <td>{{$rating->getPlaceSum($category->id, $rating->place->id)}}</td>
-             <td>{{$rating->updated_at->diffForhumans()}}</td>
-           </tr>
+         @foreach($scores as $name => $score)
+            <tr>
+                <td>{{$name}}</td>
+                <td>{{$score}}</td>
+
+
+            </tr>
+
+
              @endforeach
 
          </tbody>

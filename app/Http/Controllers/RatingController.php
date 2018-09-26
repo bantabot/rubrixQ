@@ -26,6 +26,7 @@ class RatingController extends Controller
 
         $places = Rating::select('place_id')->distinct()->get();
         $ratings = new Rating;
+
         $test= new Category;
 
 
@@ -70,13 +71,7 @@ class RatingController extends Controller
 
 
         return redirect('dashboard');
-
-
-
-
-
-
-    }
+        }
 
     /**
      * Display the specified resource.

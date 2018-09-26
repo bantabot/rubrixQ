@@ -47,10 +47,17 @@ Route::get('/leaderboard/{id}', function ($id) {
     $rubric_id = new Rubric;
     $rubric_id = $rubric_id->getRubricId($id);
     $ratings = Rating::whereIn('rubric_id', $rubric_id)->groupBy('place_id')->get();
+    $scores = [];
+    foreach ($ratings as $rating){
+
+        $scores[$rating->place->name]=$rating->getPlaceSum($id, $rating->place->id);
+
+    }
+    arsort($scores);
 
 
 
-    return view('/ratings/leaderboard', compact('category', 'ratings'));
+    return view('/ratings/leaderboard', compact('category', 'ratings', 'scores'));
 })->name('leaderboard');
 
 Route::get('/create', function () {
