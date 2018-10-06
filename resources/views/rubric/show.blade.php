@@ -43,6 +43,12 @@
 
 {!! Form::open(['method'=>'POST', 'action'=>'RubricController@store']) !!}
 
+{{--<div class="form-group">--}}
+    {{--{!! Form::select('factor_id', array(''=>'select factor') + $factors)!!}--}}
+
+
+{{--</div>--}}
+
 
 @foreach($factors as $factor)
 

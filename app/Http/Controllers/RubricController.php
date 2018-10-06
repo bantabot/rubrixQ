@@ -80,14 +80,15 @@ class RubricController extends Controller
     public function show($id)
     {
         //
+        $user = Auth::user()->id;
         $places = Place::pluck('name', 'id')->all();
-        $factors = Factor::all();
-
+        $factor_id = Rubric::where(['user_id'=>$user, 'category_id'=>$id])->groupBy('factor_id')->pluck('factor_id')->all();
+        $factors = Factor::whereNotIn('id', $factor_id)->groupBy('id')->get();
 
 
         $category = Category::findOrFail($id);
 
-        $user = Auth::user()->id;
+
         $rubrics = Rubric::where(['user_id'=>$user, 'category_id'=>$id])->get();
 
         return view('rubric/show', compact('rubrics', 'category', 'factors'));

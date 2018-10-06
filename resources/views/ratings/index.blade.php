@@ -2,12 +2,7 @@
 
 @section('content')
 
-
-
-
-
-{{--{{$ratings->name}}--}}
-
+    <div class="container">
 
 
     <table class="table">
@@ -20,8 +15,6 @@
         </tr>
         </thead>
         <tbody>
-{{--        @foreach($test as $value)--}}
-
         @foreach($places as $place)
             <tr>
 
@@ -49,7 +42,9 @@
                     </table>
 
                 </td>
-                <td></td>
+                {{--<td>--}}
+
+                {{--</td>--}}
 
 
 
@@ -66,6 +61,7 @@
 
         </tbody>
     </table>
+    </div>
 
 
 @endsection

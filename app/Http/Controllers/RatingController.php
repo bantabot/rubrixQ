@@ -56,6 +56,8 @@ class RatingController extends Controller
         //
         $input = $request->all();
 
+        //loop through the requests sent over and parse out separate scores to add each in it's own row
+
         $entryCount = count($request->score);
 
         for ($i = 0; $i < $entryCount; $i++ ){
@@ -82,7 +84,9 @@ class RatingController extends Controller
     public function show($id)
     {
         //
+        //pluck the names of the places to populate the dropdown menu
         $places = Place::pluck('name', 'id')->all();
+        //set the user and category ID in order to only bring back categories that have been set by this user
         $user = Auth::user()->id;
         $category = Category::findOrFail($id);
         $rubrics = Rubric::where(['user_id'=> $user, 'category_id'=> $id])->get();
